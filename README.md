@@ -22,20 +22,13 @@ outputs:
 ## Example usage
 ```yaml
 on:
-  pull_request:
-    types:
-      - closed
+  push:    
     paths:
-      - src/LabelAPI.API/**
-      - helm/peaklabelservice/**
-      - .github/workflows/Api.yml 
+      - "<path to the fiels you want to trigger on>"
 
 jobs:
-  generate-version:   
-    if: github.event.pull_request.merged == true   
+  generate-version:    
     runs-on: ubuntu-latest
-    environment:
-      name: development
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -45,7 +38,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          prefix-tag: "labelwebapi"
+          prefix-tag: "<your prefix to diffrenciate your tags by>"
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Print New Tag
         run: echo "The value is ${{ steps.tag-bumper.outputs.new-tag }}"
