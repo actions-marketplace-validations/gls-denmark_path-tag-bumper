@@ -1,0 +1,19 @@
+name: "Path Tag Bumper"
+description: "Can bump tags based on supplied prefix-tag"
+branding:
+  icon: "git-merge"
+  color: blue
+inputs:
+  github-token:
+    description: "Token"
+    required: true
+  prefix-tag:
+    description: "Service name as prefix for tag"
+    required: true
+outputs:
+  new-tag:
+    description: "Output from the action"
+runs:
+  using: "node16"
+  main: "index.js"
+
